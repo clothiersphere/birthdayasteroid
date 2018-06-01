@@ -1,0 +1,89 @@
+{
+  "name": "birthdayasteroid",
+  "version": "1.0.0",
+  "description": "send nasa birthday wishes",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clothiersphere/birthdayasteroid.git"
+  },
+  "author": "Christopher Lee",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors --hot --config ./webpack.config.js",
+    "test": "node packages/react-scripts/scripts/test.js --env=jsdom",
+    "format": "prettier --trailing-comma es5 --single-quote --write 'packages/*/*.js' 'packages/*/!(node_modules)/**/*.js'",
+    "precommit": "lint-staged"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react",
+      "stage-2"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-hot-loader": "^1.3.9",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-airbnb-standard": "^1.6.6",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "lint-staged": "^5.0.0",
+    "prettier": "^1.11.1",
+    "svg-react-loader": "^0.4.5",
+    "svg-url-loader": "^2.3.2",
+    "webpack": "^2.7.0",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "dependencies": {
+    "ajv": "^6.0.1",
+    "axios": "^0.16.2",
+    "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "express": "^4.16.3",
+    "file-loader": "^0.11.2",
+    "history": "^4.7.2",
+    "ls": "^0.2.1",
+    "moment": "^2.22.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-hot-loader": "^4.0.1",
+    "react-infinite": "^0.13.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "semantic-ui-react": "^0.77.2",
+    "shortid": "^2.2.8",
+    "sort-array": "^2.0.0",
+    "style-loader": "^0.20.3"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --trailing-comma es5 --single-quote --write",
+      "git add"
+    ],
+    "yarn.lock": [
+      "git rm --cached"
+    ]
+  }
+}
