@@ -4,18 +4,22 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import APODcard from './APODcard';
 
 
 class App extends Component {
   componentDidMount() {
-    (console.log('hi'));
+    this.props.getAPOD();
   }
 
-
   render() {
+    const {
+      APOD,
+    } = this.props;
+
     return (
       <div className="App">
-        Happy Birthday Asteroid
+        <APODcard data={APOD} />
       </div>
     );
   }
@@ -23,17 +27,17 @@ class App extends Component {
 
 function mapStateToProps(state) {
   const {
-
+    APOD,
   } = state;
 
   return {
-
+    APOD,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-
+    getAPOD: () => dispatch(actions.getAPOD()),
     submitDate: date => dispatch(actions.submitDate(date)),
   };
 }

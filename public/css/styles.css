@@ -1,0 +1,9 @@
+.APOD {
+  display:flex;
+  flex-direction: column;
+}
+
+.APODtext {
+  display: flex;
+  flex-direction: column;
+}
