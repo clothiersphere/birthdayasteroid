@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import moment from 'moment';
+import NeoList from './NeoList';
 
-const HomeView = (props) => {
-  let neoLength = 0;
-  let phaLength = 0;
+class HomeView extends Component {
+  render() {
+    const { neo } = this.props;
+    const todaysDate = moment().format('MMM DD, YYYY');
 
-  if (props.neo.nearEarthObjects) {
-    const { nearEarthObjects } = props.neo;
-    if (nearEarthObjects.length) {
-      neoLength = nearEarthObjects.length;
+    let neoLength = 0;
+    let phaLength = 0;
+
+    if (neo.length > 0) {
+      const { nearEarthObjects } = neo;
+      neoLength = neo.length;
+      const pha = neo.filter(neo => neo.is_potentially_hazardous_asteroid === 'true');
+      phaLength = pha.length;
     }
 
-    const pha = nearEarthObjects.filter(neo => neo.is_potentially_hazardous_asteroid === 'true');
-    phaLength = pha.length;
+    return (
+      <div className="home-view">
+      If today {todaysDate} is your birthday, you will be pleased to know:
+        <div>
+        There are {neoLength} near earth objects:
+          <NeoList neo={neo} />
+        </div>
+        <div>
+          {phaLength} of those are potentially hazardous asteroids.
+        </div>
+      </div>
+    );
   }
-
-  return (
-    <div className="home-view">
-      <div>
-        There are {neoLength} near earth objects.
-      </div>
-      <div>
-        {phaLength} of those are potentially hazardous asteroids.
-      </div>
-    </div>
-  );
-};
+}
 
 export default HomeView;
