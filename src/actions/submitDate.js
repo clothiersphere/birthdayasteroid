@@ -12,7 +12,7 @@ export function submitDate(date) {
   return function (dispatch) {
     const request = axios({
       method: 'GET',
-      url: `http://localhost:8080/api/birthday/${date}`,
+      url: `http://localhost:8080/api/neo/${date}`,
     });
     return request
       .then((response) => {
