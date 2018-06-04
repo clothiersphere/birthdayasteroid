@@ -16,8 +16,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.getAPOD();
     this.props.submitDate(this.state.startDate.format('YYYY-MM-DD'));
+    this.props.getAPOD();
   }
 
   render() {
@@ -29,7 +29,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Body {...this.props} />
+        <Body neo={neo} />
       </div>
     );
   }

@@ -1,10 +1,11 @@
 import * as actionTypes from '../constants/actionTypes';
 
-const initialState = {};
+const initialState = [
+];
 
 function getAsteroid(state, action) {
   const { date } = action;
-  return { ...state, ...date };
+  return [...state, ...date.nearEarthObjects];
 }
 
 export default function (state = initialState, action) {
