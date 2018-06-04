@@ -1,3 +1,21 @@
+#app {
+  height: 100%;
+}
+.App {
+  height: 100%;
+}
+
+.navigation { 
+  justify-content: center;
+ }
+ 
+.body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .APOD {
   display:flex;
   flex-direction: column;
@@ -6,4 +24,16 @@
 .APODtext {
   display: flex;
   flex-direction: column;
+}
+
+.datePicker {
+  display: flex;
+  justify-content: center;
+}
+
+.home-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
