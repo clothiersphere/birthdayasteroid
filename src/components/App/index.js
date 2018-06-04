@@ -24,12 +24,12 @@ class App extends Component {
     const {
       APOD,
       submitDate,
-      asteroidList,
+      neo,
     } = this.props;
 
     return (
       <div className="App">
-        <Body />
+        <Body {...this.props} />
       </div>
     );
   }
@@ -38,12 +38,12 @@ class App extends Component {
 function mapStateToProps(state) {
   const {
     APOD,
-    asteroidList,
+    neo,
   } = state;
 
   return {
     APOD,
-    asteroidList,
+    neo,
   };
 }
 
