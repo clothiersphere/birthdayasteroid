@@ -16,6 +16,18 @@ app.get('/api/APOD', (req, res) => {
   apod.then(response => res.send(response.data));
 });
 
+app.get('/api/neo/:date', (req, res) => {
+  const date = req.params.date;
+  const asteroidList = axios.get(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=${nasaAPIkey}`);
+  asteroidList.then((response) => {
+    const NEO = response.data.near_earth_objects;
+    res.send({
+      date,
+      nearEarthObjects: NEO[date],
+    });
+  });
+});
+
 app.listen(1234, () => {
   console.log('%s listening at %d', app.name, 1234);
 });
