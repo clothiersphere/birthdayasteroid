@@ -19,7 +19,7 @@ class HomeView extends Component {
 
     return (
       <div className="home-view">
-      If today {todaysDate} is your birthday, you will be pleased to know:
+      If today {todaysDate} is your birthday, you will be pleased to know
         <div>
         There are {neoLength} near earth objects:
           <NeoList neo={neo} />
