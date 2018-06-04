@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import HomeView from './HomeView';
 
 export default class Body extends Component {
   constructor(props) {
@@ -11,14 +12,11 @@ export default class Body extends Component {
 
   render() {
     const { props } = this;
-    // console.log(props, 'props');
 
     return (
       <div className="body">
         <Switch>
-          <Route exact path="/all" render={routeProps => <GameList {...routeProps} {...props} />} />
-          <Route exact path="/sale" render={routeProps => <GameList {...routeProps} {...props} />} />
-          <Route exact path="/" render={routeProps => <Home {...routeProps} {...props} />} />
+          <Route exact path="/" render={routeProps => <HomeView {...routeProps} {...props} />} />
         </Switch>
       </div>
 
