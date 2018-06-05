@@ -6,7 +6,7 @@ import NeoList from './NeoList';
 class HomeView extends Component {
   render() {
     const { neo } = this.props;
-    const todaysDate = moment().format('MMM DD, YYYY');
+    const todaysDate = moment().format('MMMM DD, YYYY');
     const pha = neo.filter(asteroid => asteroid.is_potentially_hazardous_asteroid === 'true');
 
     const message = () => {
@@ -19,7 +19,7 @@ class HomeView extends Component {
       }
       return (
         <div>
-          No potential of asteroidal impending doom today, but there is always tomorrow!
+          Sorry, the world is not ending today. You still gotta get up for work tomorrow.
         </div>
       );
     };
@@ -33,13 +33,14 @@ class HomeView extends Component {
 
     return (
       <div className="home-view">
-      If today {todaysDate} is your birthday, you will be pleased to know
+        <span>{todaysDate}</span>
+        If today is your birthday, you will be pleased to know
         <div>
-          <span className="asteroid-message"> There {tense()} {neo.length} near earth objects: </span>
+          <span className="asteroid-message"> there {tense()} {neo.length} near earth objects: </span>
           <NeoList neo={neo} />
         </div>
-        <div>
-          <span className="asteroid-message"> {pha.length} of those are potentially hazardous asteroids. </span>
+        <div className="asteroid-message">
+          {pha.length} of those are potentially hazardous asteroids.
           {message()}
         </div>
       </div>
