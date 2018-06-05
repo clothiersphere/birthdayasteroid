@@ -11,11 +11,28 @@ const NeoList = ({ neo }) => (
           is_potentially_hazardous_asteroid: isPHA,
           nasa_jpl_url: url,
           neo_reference_id: neoId,
+          close_approach_data: closeApproachData,
         } = asteroid;
+
+        const {
+          estimated_diameter_max: estDiaMax,
+          estimated_diameter_min: estDiaMin,
+        } = estimatedDiameter.meters;
+
+        const relativeVelocity = closeApproachData[0].relative_velocity;
+        const kph = relativeVelocity.kilometers_per_second;
+
+        const twoDec = num => Math.round(num * 100) / 100;
 
         return (
           <li key={neoId}>
-            <a href={url}> {name} </a>
+            {name}
+            {twoDec(estDiaMax)} meters wide, travelling at {twoDec(kph)} km/s
+            <a
+              href={url}
+            >
+            +
+            </a>
           </li>
         );
       })}
