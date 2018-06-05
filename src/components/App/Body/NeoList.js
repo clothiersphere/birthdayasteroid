@@ -1,23 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-// const NeoList = (nearEarthObjects) => {
-// console.log(nearEarthObjects, 'NEO');
-const NeoList = ({ neo }) => {
-  const list = () => (
-    <div>
-      {neo.map(neo => (
-        <div>
-          {neo.name}
-        </div>
-        ))}
-    </div>
-  );
+const NeoList = ({ neo }) => (
+  <div className="neo-list">
+    <ul>
+      {neo.map((asteroid) => {
+        const {
+          name,
+          estimated_diameter: estimatedDiameter,
+          is_potentially_hazardous_asteroid: isPHA,
+          nasa_jpl_url: url,
+          neo_reference_id: neoId,
+        } = asteroid;
 
-  return (
-    <div className="neo-list">
-      {list()}
-    </div>
-  );
+        return (
+          <li key={neoId}>
+            <a href={url}> {name} </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+);
+
+NeoList.propTypes = {
+  neo: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default NeoList;
