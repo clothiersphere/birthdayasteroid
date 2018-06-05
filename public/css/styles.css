@@ -14,6 +14,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 15px;
+  font-family: 'Lato', sans-serif;
+  font-weight: black;
+  color: white;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/227_Images_Perseid_Meteor_Shower.jpg/1280px-227_Images_Perseid_Meteor_Shower.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .APOD {
@@ -31,9 +40,31 @@
   justify-content: center;
 }
 
+.meteor-pic {
+  height: 80vh;
+  width: 100%;
+}
+
 .home-view {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.asteroid-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.neo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*justify-content: center;*/
+}
+
+.neo-list > ul {
+  list-style: none;
 }
