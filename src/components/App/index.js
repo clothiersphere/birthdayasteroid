@@ -25,13 +25,17 @@ class App extends Component {
     const {
       // APOD,
       // submitDate,
+      history,
       neo,
     } = this.props;
 
     return (
       <div className="App">
-        <Navigation />
+        <Navigation history={history} />
         <Body neo={neo} />
+        <div className="footer">
+          footer
+        </div>
       </div>
     );
   }
