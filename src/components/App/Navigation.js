@@ -7,14 +7,25 @@ export default class Navigation extends Component {
     this.state = { activeItem: null };
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => {
+    if (name === 'sendBirthdayAsteroid') {
+      this.props.history.push('/birthdayAsteroid');
+    }
+
+    if (name === 'home') {
+      this.props.history.push('/');
+    }
+
+    this.setState({ activeItem: name });
+  }
 
   render() {
     const { activeItem } = this.state;
 
+    console.log(this.props, 'navi props');
     return (
       <div className="navigation">
-        <Menu>
+        <Menu inverted>
           <Menu.Item
             name="home"
             active={activeItem === 'home'}
