@@ -1,28 +1,41 @@
 #app {
-  height: 100%;
+  height: 100%; 
 }
+
+html,body { height:100%; }
+
 .App {
   height: 100%;
 }
 
 .navigation { 
   justify-content: center;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
  }
  
 .body {
-  height: 100%;
+  height: 94vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
+  font-size: 25px;
+  line-height: 32px;
+  word-spacing: 1px;
   font-family: 'Lato', sans-serif;
-  font-weight: black;
-  color: white;
-  background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/227_Images_Perseid_Meteor_Shower.jpg/1280px-227_Images_Perseid_Meteor_Shower.jpg") no-repeat center center fixed;
+  font-weight: normal;
+  /*color: #EBC815;*/
+  color: #EFD344;
+  /*background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/227_Images_Perseid_Meteor_Shower.jpg/1280px-227_Images_Perseid_Meteor_Shower.jpg") no-repeat center center fixed;*/
+  background: url("https://www.jpl.nasa.gov/spaceimages/images/largesize/PIA20340_hires.jpg") no-repeat center center fixed;
+  /*background: url("https://www.nasa.gov/sites/default/files/thumbnails/image/hubble_friday_09042015.jpg") no-repeat center center fixed;*/
+  /*background: url("https://i2.wp.com/media.boingboing.net/wp-content/uploads/2016/08/geminid20091209-full.jpg?w=1248&ssl=1") no-repeat center center fixed;*/
+  
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  border-top: black;
 }
 
 .APOD {
@@ -67,4 +80,10 @@
 
 .neo-list > ul {
   list-style: none;
+}
+
+.footer {
+  height: 2vh;
+  background-color: black;
+  border-top: 1px solid gray;
 }
