@@ -5,8 +5,6 @@ const app = express();
 
 const { nasaAPIkey } = require('./keys');
 
-console.log(nasaAPIkey, 'apikey');
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
@@ -17,7 +15,7 @@ app.get('/api/APOD', (req, res) => {
 });
 
 app.get('/api/neo/:date', (req, res) => {
-  const date = req.params.date;
+  const { date } = req.params;
   const asteroidList = axios.get(`https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=${nasaAPIkey}`);
   asteroidList.then((response) => {
     const NEO = response.data.near_earth_objects;
