@@ -22,7 +22,6 @@ export default class Navigation extends Component {
   render() {
     const { activeItem } = this.state;
 
-    console.log(this.props, 'navi props');
     return (
       <div className="navigation">
         <Menu inverted>
