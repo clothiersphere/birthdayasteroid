@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import NeoList from './NeoList';
 
@@ -6,30 +7,48 @@ class HomeView extends Component {
   render() {
     const { neo } = this.props;
     const todaysDate = moment().format('MMM DD, YYYY');
+    const pha = neo.filter(asteroid => asteroid.is_potentially_hazardous_asteroid === 'true');
 
-    let neoLength = 0;
-    let phaLength = 0;
+    const message = () => {
+      if (pha.length > 0) {
+        return (
+          <div>
+            At least today is your birthday.
+          </div>
+        );
+      }
+      return (
+        <div>
+          No potential of asteroidal impending doom today, but there is always tomorrow!
+        </div>
+      );
+    };
 
-    if (neo.length > 0) {
-      const { nearEarthObjects } = neo;
-      neoLength = neo.length;
-      const pha = neo.filter(neo => neo.is_potentially_hazardous_asteroid === 'true');
-      phaLength = pha.length;
-    }
+    const tense = () => {
+      if (neo.length === 1) {
+        return 'is';
+      }
+      return 'are';
+    };
 
     return (
       <div className="home-view">
       If today {todaysDate} is your birthday, you will be pleased to know
         <div>
-        There are {neoLength} near earth objects:
+          <span className="asteroid-message"> There {tense()} {neo.length} near earth objects: </span>
           <NeoList neo={neo} />
         </div>
         <div>
-          {phaLength} of those are potentially hazardous asteroids.
+          <span className="asteroid-message"> {pha.length} of those are potentially hazardous asteroids. </span>
+          {message()}
         </div>
       </div>
     );
   }
 }
+
+HomeView.propTypes = {
+  neo: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default HomeView;
