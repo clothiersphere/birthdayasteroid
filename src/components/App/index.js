@@ -25,6 +25,7 @@ class App extends Component {
     const {
       // APOD,
       // submitDate,
+      createBdayEntry,
       history,
       neo,
     } = this.props;
@@ -32,7 +33,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation history={history} />
-        <Body neo={neo} />
+        <Body neo={neo} createBdayEntry={createBdayEntry} />
         <div className="footer">
           footer
         </div>
@@ -54,6 +55,8 @@ App.propTypes = {
   // }),
   submitDate: PropTypes.func.isRequired,
   neo: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.shape({}).isRequired,
+  createBdayEntry: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -72,6 +75,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getAPOD: () => dispatch(actions.getAPOD()),
     submitDate: date => dispatch(actions.submitDate(date)),
+    createBdayEntry: info => dispatch(actions.createBdayEntry(info)),
   };
 }
 
