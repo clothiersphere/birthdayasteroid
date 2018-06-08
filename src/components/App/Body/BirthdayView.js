@@ -11,22 +11,50 @@ export default class BirthdayView extends Component {
     super(props);
     this.state = {
       startDate: moment(),
+      senderEmail: '',
+      birthday: '',
+      recipientMobile: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.datePickerChange = this.datePickerChange.bind(this);
   }
 
-  handleChange(date) {
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+
+  datePickerChange(date) {
     this.setState({
       startDate: date,
+      birthday: date.format('YYYY-MM-DD'),
+    });
+  }
+
+  handleSubmit() {
+    const {
+      birthday,
+      senderEmail,
+      recipientMobile,
+    } = this.state;
+
+    this.setState({
+      birthday,
+      senderEmail,
+      recipientMobile,
     });
   }
 
   render() {
     const {
       // APOD,
+      createBdayEntry,
       submitDate,
       neo,
     } = this.props;
+
+    const {
+      birthday,
+      senderEmail,
+      recipientMobile,
+    } = this.state;
 
     // const months = [];
     // const days = [];
@@ -47,25 +75,51 @@ export default class BirthdayView extends Component {
     // <Dropdown placeholder="Select Month" fluid selection options={months} />
     // <Dropdown placeholder="Select Days" fluid selection options={days} />
 
-
     return (
       <div className="birthday-view">
         <Segment inverted>
-          <Form inverted>
-            <Form.Input fluid >
-              <Icon name="birthday" position="left" inverted />
+          <Form
+            inverted
+            onSubmit={() => this.handleSubmit()}
+          >
+            <Form.Input fluid>
+              <Label>
+                <Icon name="birthday" position="left" />
+              </Label>
               <DatePicker
-
+                selected={this.state.startDate}
+                onChange={this.datePickerChange}
+                minDate={moment().dayOfYear(1)}
+                maxDate={moment().dayOfYear(365)}
+                todayButton="Today"
                 placeholderText="Select a birth date"
               />
             </Form.Input>
-            <Form.Input icon="mobile" iconPosition="left" fluid label="recipient's mobile #" placeholder="mobile number" />
-            <Form.Input icon="mail" iconPosition="left" fluid label="sender's e-mail address" placeholder="sender's email address" />
+            <Form.Input
+              icon="mobile"
+              iconPosition="left"
+              fluid
+              label="recipient's mobile #"
+              placeholder="mobile number"
+              name="recipientMobile"
+              value={recipientMobile}
+              onChange={this.handleChange}
+
+            />
+            <Form.Input
+              icon="mail"
+              iconPosition="left"
+              fluid
+              label="sender's e-mail address"
+              placeholder="sender's email address"
+              name="senderEmail"
+              value={senderEmail}
+              onChange={this.handleChange}
+
+            />
             <div className="birthday-button">
-              <Button
-                onClick={() => submitDate(this.state.startDate.format('YYYY-MM-DD'))}
-              >
-              Submit
+              <Button type="submit">
+                Submit
               </Button>
             </div>
           </Form>
