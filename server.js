@@ -1,7 +1,12 @@
 const express = require('express');
 const axios = require('axios');
+const bodyParser = require('body-parser');
+const entries = require('./server/entries');
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const { nasaAPIkey } = require('./keys');
 
@@ -25,6 +30,19 @@ app.get('/api/neo/:date', (req, res) => {
     });
   });
 });
+
+// app.post('/api/birthdayAsteroid', birthdayAsteroids.createNotification);
+app.post('/api/birthdayAsteroid', entries.createNotification);
+// const { birthday, senderEmail, mobile } = req.params;
+
+// post
+// /api/sendBirthdayAsteroid
+// receive birthday + sender's email + recipient mobile#
+// check db for duplicate #
+// if not duplicate
+// create entry in db
+
+//
 
 app.listen(1234, () => {
   console.log('%s listening at %d', app.name, 1234);
