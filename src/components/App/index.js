@@ -18,7 +18,6 @@ class App extends Component {
 
   componentDidMount() {
     this.props.submitDate(this.state.startDate.format('YYYY-MM-DD'));
-    // this.props.getAPOD();
   }
 
   render() {
