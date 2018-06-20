@@ -1,21 +1,29 @@
 import axios from 'axios';
 import * as actionTypes from '../constants/actionTypes';
 
-function createEntry(response) {
+function handleResponse(response) {
+  console.log(response, 'response');
+  const { success } = response;
+
+  if (success) {
+    return {
+      type: actionTypes.CREATE_BDAY_SUCCESS,
+      response,
+    };
+  }
   return {
-    type: actionTypes.CREATE_BDAY_ENTRY,
+    type: actionTypes.CREATE_BDAY_FAILURE,
     response,
   };
 }
 
 export function createBdayEntry(info) {
-  const { birthday, recipientMobile, senderEmail } = info;
   return function (dispatch) {
     const request = axios.post('http://localhost:8080/api/birthdayAsteroid', info);
 
     return request
       .then((response) => {
-        dispatch(createEntry(response.data));
+        dispatch(handleResponse(response.data));
       });
   };
 }
