@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import { Button, Dropdown, Form, Segment, Label, Icon } from 'semantic-ui-react';
+import { Button, Form, Segment, Label, Icon } from 'semantic-ui-react';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-
-// import APODcard from './APODcard';
 
 export default class BirthdayView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: moment(),
+      startDate: '',
       senderEmail: '',
       birthday: '',
       recipientMobile: '',
@@ -35,10 +33,37 @@ export default class BirthdayView extends Component {
       recipientMobile,
     } = this.state;
 
-    this.setState({
+    if (birthday === '') {
+      alert('please select a birthdate');
+      return;
+    }
+
+    if (recipientMobile === '') {
+      alert('please select a recipientMobile');
+      return;
+    }
+
+    if (senderEmail === '') {
+      alert('please select a senderEmail');
+      return;
+    }
+
+    // validation
+
+
+    const entryInfo = {
       birthday,
       senderEmail,
       recipientMobile,
+    };
+
+    this.props.createBdayEntry(entryInfo);
+
+    this.setState({
+      startDate: '',
+      senderEmail: '',
+      birthday: '',
+      recipientMobile: '',
     });
   }
 
@@ -48,82 +73,58 @@ export default class BirthdayView extends Component {
       createBdayEntry,
       submitDate,
       neo,
+      entry,
     } = this.props;
 
-    const {
-      birthday,
-      senderEmail,
-      recipientMobile,
-    } = this.state;
-
-    // const months = [];
-    // const days = [];
-    // for (let i = 1; i <= 12; i += 1) {
-    //   months.push({
-    //     text: i,
-    //     value: i,
-    //   });
-    // }
-
-    // for (let i = 1; i <= 31; i += 1) {
-    //   days.push({
-    //     text: i,
-    //     value: i,
-    //   });
-    // }
-
-    // <Dropdown placeholder="Select Month" fluid selection options={months} />
-    // <Dropdown placeholder="Select Days" fluid selection options={days} />
-
     return (
-      <div className="birthday-view">
-        <Segment inverted>
-          <Form
-            inverted
-            onSubmit={() => this.handleSubmit()}
-          >
-            <Form.Input fluid>
-              <Label>
-                <Icon name="birthday" position="left" />
-              </Label>
-              <DatePicker
-                selected={this.state.startDate}
-                onChange={this.datePickerChange}
-                minDate={moment().dayOfYear(1)}
-                maxDate={moment().dayOfYear(365)}
-                todayButton="Today"
-                placeholderText="Select a birth date"
+      <div>
+        <div className="birthday-view">
+          <Segment inverted>
+            <Form
+              inverted
+              onSubmit={() => this.handleSubmit()}
+            >
+              <Form.Input>
+                <Label>
+                  <Icon name="birthday" position="left" />
+                </Label>
+                <DatePicker
+                  selected={this.state.startDate}
+                  onChange={this.datePickerChange}
+                  minDate={moment().dayOfYear(1)}
+                  maxDate={moment().dayOfYear(365)}
+                  todayButton="Today"
+                  placeholderText="Select a birth date"
+                />
+              </Form.Input>
+              <Form.Input
+                icon="mobile"
+                iconPosition="left"
+
+                label="recipient's mobile #"
+                placeholder="mobile number"
+                name="recipientMobile"
+                value={this.state.recipientMobile}
+                onChange={this.handleChange}
               />
-            </Form.Input>
-            <Form.Input
-              icon="mobile"
-              iconPosition="left"
-              fluid
-              label="recipient's mobile #"
-              placeholder="mobile number"
-              name="recipientMobile"
-              value={recipientMobile}
-              onChange={this.handleChange}
+              <Form.Input
+                icon="mail"
+                iconPosition="left"
 
-            />
-            <Form.Input
-              icon="mail"
-              iconPosition="left"
-              fluid
-              label="sender's e-mail address"
-              placeholder="sender's email address"
-              name="senderEmail"
-              value={senderEmail}
-              onChange={this.handleChange}
-
-            />
-            <div className="birthday-button">
-              <Button type="submit">
+                label="sender's e-mail address"
+                placeholder="sender's email address"
+                name="senderEmail"
+                value={this.state.senderEmail}
+                onChange={this.handleChange}
+              />
+              <div className="birthday-button">
+                <Button type="submit">
                 Submit
-              </Button>
-            </div>
-          </Form>
-        </Segment>
+                </Button>
+              </div>
+            </Form>
+          </Segment>
+        </div>
       </div>
     );
   }
