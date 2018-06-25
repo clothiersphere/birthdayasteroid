@@ -17,7 +17,7 @@ function createNotification(req, res, next) {
     .then(entry => entry || t.one(addEntry)))
     .then((data) => {
       if (Object.prototype.hasOwnProperty.call(data, 'id')) {
-        res.status(409).send({
+        res.send({
           success: false,
           flag: 'entry_exists',
         });
