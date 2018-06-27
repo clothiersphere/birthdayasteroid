@@ -82,7 +82,8 @@
     "semantic-ui-react": "^0.77.2",
     "shortid": "^2.2.8",
     "sort-array": "^2.0.0",
-    "style-loader": "^0.20.3"
+    "style-loader": "^0.20.3",
+    "twilio": "^3.17.4"
   },
   "lint-staged": {
     "*.js": [
